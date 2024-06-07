@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+void bubbleSort(char nomes[100][50], int n) {
+    int i, j;
+    char temp[50];
+    for (i = 0; i < n-1; i++) {
+        for (j = 0; j < n-i-1; j++) {
+            if (strcmp(nomes[j], nomes[j+1]) > 0) {
+                strcpy(temp, nomes[j]);
+                strcpy(nomes[j], nomes[j+1]);
+                strcpy(nomes[j+1], temp);
+            }
+        }
+    }
+}
+
+int main() {
+    char nomes[100][50];
+    int n, i;
+
+    printf("Quantos nomes você deseja ordenar? (apenas números até %d): ", 100);
+    scanf("%d", &n);
+
+    if (n <= 0 || n > 100) {
+        printf("Quantidade inválida de nomes.\n");
+        return 1;
+    }
+
+    printf("Digite os nomes um por vez:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%s", nomes[i]);
+    }
+
+    bubbleSort(nomes, n);
+
+    printf("\nNomes ordenados:\n");
+    for (i = 0; i < n; i++) {
+        printf("%s\n", nomes[i]);
+    }
+
+    return 0;
+}
